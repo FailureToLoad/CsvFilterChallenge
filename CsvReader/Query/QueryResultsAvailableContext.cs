@@ -8,16 +8,8 @@ public class QueryResultsAvailableContext : IContext
     {
         if (!_results.Any())
             Console.WriteLine(QueryMessages.NoResults);
-        else
-            DisplayResults(_results);
         return this;
     }
 
-    private void DisplayResults(IEnumerable<string[]> results)
-    {
-        foreach (var record in results)
-        {
-            Console.WriteLine(string.Join(" ", record));
-        }
-    }
+    public IEnumerable<string[]> GetResults() => _results;
 }
