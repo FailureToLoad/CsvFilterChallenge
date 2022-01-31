@@ -11,6 +11,8 @@ public class QueryTests
 {
     private const string InvalidDobQuery = "1/11/2021";
     private const string ValidDobQuery = "19700101";
+    private const string FirstNameQuery = "Bobby";
+    private const string LastNameQuery = "Tables";
     [Test]
     public void When_UserSubmitsValidChoice_Then_AdvanceToQueryRequestState()
     {
@@ -44,14 +46,36 @@ public class QueryTests
     }
     
     [Test]
-    public void When_ValidDobQueryReceived_Then_AdvanceToQueryResultsAvailableContext()
+    public void When_ValidDobQueryReceived_Then_AdvanceToQueryResultsAvailable()
     {
         Console.SetIn(new StringReader(ValidDobQuery));
         KeyValuePair<string, int> header = GetDobHeader(); 
         var document = MakeValidDocument();
         IContext context = new QueryContext(header, document);
         context = context.Transition();
-        Assert.IsInstanceOf<QueryContext>(context);
+        Assert.IsInstanceOf<QueryResultsAvailableContext>(context);
+    }
+
+    [Test]
+    public void When_FirstNameQueryReceived_Then_AdvanceToQueryResultsAvailable()
+    {
+        Console.SetIn(new StringReader(FirstNameQuery));
+        KeyValuePair<string, int> header = GetFirstNameHeader(); 
+        var document = MakeValidDocument();
+        IContext context = new QueryContext(header, document);
+        context = context.Transition();
+        Assert.IsInstanceOf<QueryResultsAvailableContext>(context);
+    }
+    
+    [Test]
+    public void When_LastNameQueryReceived_Then_AdvanceToQueryResultsAvailable()
+    {
+        Console.SetIn(new StringReader(LastNameQuery));
+        KeyValuePair<string, int> header = GetLastNameHeader(); 
+        var document = MakeValidDocument();
+        IContext context = new QueryContext(header, document);
+        context = context.Transition();
+        Assert.IsInstanceOf<QueryResultsAvailableContext>(context);
     }
 
     private CsvDocument MakeValidDocument()
@@ -76,5 +100,15 @@ public class QueryTests
     private KeyValuePair<string, int> GetDobHeader()
     {
         return new KeyValuePair<string, int>("dob", 2);
+    }
+    
+    private KeyValuePair<string, int> GetFirstNameHeader()
+    {
+        return new KeyValuePair<string, int>("first_name", 0);
+    }
+    
+    private KeyValuePair<string, int> GetLastNameHeader()
+    {
+        return new KeyValuePair<string, int>("last_name", 1);
     }
 }

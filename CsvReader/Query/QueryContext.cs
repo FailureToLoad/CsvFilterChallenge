@@ -6,7 +6,7 @@ public class QueryContext : IContext
 {
     private readonly KeyValuePair<string,int> _header;
     private readonly CsvDocument _document;
-    private const string DateFormat = "YYYYMMDD";
+    private const string DateFormat = "yyyyMMdd";
 
     public QueryContext(KeyValuePair<string,int> header, CsvDocument document)
     {
@@ -15,13 +15,21 @@ public class QueryContext : IContext
     }
     public IContext Transition()
     {
-        string query = GetQuery(QueryMessages.DateOfBirthQueryPrompt);
-        if (!DateOfBirthIsValid(query))
+        string query;
+        if (_header.Key.Contains("_"))
         {
-            Console.WriteLine(QueryMessages.InvalidDateOfBirth);
-            return this;
+            query = GetQuery(QueryMessages.NameQueryPrompt(_header.Key));
         }
-
+        else
+        {
+            query = GetQuery(QueryMessages.DateOfBirthQueryPrompt);
+            if (!DateOfBirthIsValid(query))
+            {
+                Console.WriteLine(QueryMessages.InvalidDateOfBirth);
+                return this;
+            }
+        }
+        
         var results = ExecuteQuery(_document, _header.Value, query);
         return new QueryResultsAvailableContext(results);
     }
@@ -35,12 +43,10 @@ public class QueryContext : IContext
     private bool DateOfBirthIsValid(string dateOfBirth)
     {
         DateTime dob = DateTime.MinValue;
-        DateTime.TryParseExact(dateOfBirth, 
-            DateFormat, 
+        return DateTime.TryParseExact(dateOfBirth, DateFormat, 
             CultureInfo.InvariantCulture, 
-            DateTimeStyles.None, 
-            out dob);
-        return dob > DateTime.MinValue;
+            DateTimeStyles.None, out dob);
+        
     }
 
     private IEnumerable<string[]> ExecuteQuery(CsvDocument document, int index, string query)
