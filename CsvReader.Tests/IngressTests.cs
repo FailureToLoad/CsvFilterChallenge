@@ -40,4 +40,12 @@ public class IngressTests
         context = context.Transition();
         Assert.IsInstanceOf(typeof(ErrorReportingContext), context);
     }
+
+    [Test]
+    public void When_ProcessingValidFile_Then_ReportDocumentReady()
+    {
+        IContext context = new FileProcessingContext(ValidFilePath);
+        context = context.Transition();
+        Assert.IsInstanceOf(typeof(DocumentReadyContext), context);
+    }
 }
