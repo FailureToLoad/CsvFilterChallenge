@@ -30,20 +30,12 @@ public class IngressTests
         Assert.True(context is FileProcessingContext);
     }
     
-    [Test]
-    public void When_ProcessingEmptyFile_Then_ReportError()
+    [TestCase(EmptyFilePath)]
+    [TestCase(HeaderElementMistmatch)]
+    public void When_ProcessingInvalidFile_Then_ReportError(string filePath)
     {
-        IContext context = new FileProcessingContext(EmptyFilePath);
+        IContext context = new FileProcessingContext(filePath);
         context = context.Transition();
         Assert.True(context is ErrorReportingContext);
     }
-
-    [Test]
-    public void When_ProcessingFileWithOnlyHeader_Then_ReportError()
-    {
-        IContext context = new FileProcessingContext(HeaderElementMistmatch);
-        context = context.Transition();
-        Assert.True(context is ErrorReportingContext);
-    }
-    
 }
