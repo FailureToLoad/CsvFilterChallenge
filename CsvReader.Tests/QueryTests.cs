@@ -19,6 +19,17 @@ public class QueryTests
         Assert.IsInstanceOf<QueryRequestContext>(context);
     }
 
+    [TestCase("skub")]
+    [TestCase("10")]
+    public void When_UserSumbitsInvalidChoice_Then_ReissueHeaderRequest(string choice)
+    {
+        Console.SetIn(new StringReader(choice));
+        var document = MakeValidDocument();
+        IContext context = new HeaderSelectionContext(document);
+        context = context.Transition();
+        Assert.IsInstanceOf<HeaderSelectionContext>(context);
+    }
+
     private CsvDocument MakeValidDocument()
     {
         Dictionary<string, int> headers = new()

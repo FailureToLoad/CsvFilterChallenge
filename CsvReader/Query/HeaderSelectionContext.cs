@@ -12,8 +12,13 @@ public class HeaderSelectionContext : IContext
         foreach (KeyValuePair<string, int> kvp in headers)
             Console.WriteLine($"{kvp.Value}.{kvp.Key+1}");
         string? choice = Console.ReadLine()!;
-        if (int.TryParse(choice, out int friend))
+        if (int.TryParse(choice, out int friend) && IsChoiceInRange(friend--,_document.GetHeaders().Values))
             return new QueryRequestContext(friend);
         return this;
+    }
+
+    public bool IsChoiceInRange(int choice, IEnumerable<int> indecies)
+    {
+        return choice > indecies.Min() && choice < indecies.Max();
     }
 }
