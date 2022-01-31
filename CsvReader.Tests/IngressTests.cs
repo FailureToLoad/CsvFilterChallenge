@@ -42,6 +42,14 @@ public class IngressTests
     }
 
     [Test]
+    public void After_ErrorReported_Then_RequestNewFile()
+    {
+        IContext context = new ErrorReportingContext("");
+        context = context.Transition();
+        Assert.IsInstanceOf(typeof(RequestFilePathContext), context);
+    }
+
+    [Test]
     public void When_ProcessingValidFile_Then_ReportDocumentReady()
     {
         IContext context = new FileProcessingContext(ValidFilePath);
