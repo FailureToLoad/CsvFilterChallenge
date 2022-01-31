@@ -41,4 +41,4 @@ The following became apparent.
 2. Using normal exception handling would cause either a poor user experience if exceptions are allowed to bubble up or a poor developer experience if they're swallowed in order to dictate control flow.
 3. Using a standard design of creating a CsvReader class that produces a CsvDocument class made for dense testing since much of the internals were obfuscated.
 
-In order to produce code that was highly testable and easily extended, I settled on something akin to the strategy pattern. Diagrams mapping out the strategy transitions are available in the [Ingress](CsvReader/Ingress) and [Query](/CsvReader/Query) folders.
+In order to produce code that was highly testable and easily extended, I settled on something akin to the strategy pattern. Diagrams mapping out the strategy transitions are available in the [Ingress](CsvReader/Ingress/README.md) and [Query](/CsvReader/Query/README.md) folders.
