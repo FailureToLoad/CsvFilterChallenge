@@ -15,7 +15,7 @@ public class QueryTests
     private const string FirstNameQuery = "Bobby";
     private const string LastNameQuery = "Tables";
     [Test]
-    public void When_UserSubmitsValidChoice_Then_AdvanceToQueryRequestState()
+    public void When_UserSubmitsValidChoice_Then_AdvanceToQueryRequest()
     {
         Console.SetIn(new StringReader("1"));
         var document = MakeValidDocument();
