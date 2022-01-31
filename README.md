@@ -18,6 +18,9 @@ Robert,Griesemer,19640609
 
 ## How-To
 
+This program will parse a csv file. Prior to running it, a csv filepath should be copied and ready to be pasted.  
+If you do not have a csv file for testing, the [valid.csv](CsvReader.Tests/valid.csv) in the test project can be used.  
+Simply find the path to it in your local system and provide it to the program when prompted.  
 
 1. Clone the repository to your local machine
 2. Navigate to the root directory of the repository via your favorite terminal application.
