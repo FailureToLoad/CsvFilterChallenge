@@ -19,9 +19,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="valid.csv">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
       <None Update="empty.csv">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
@@ -29,6 +26,9 @@
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Update="no-value-rows.csv">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="valid.csv">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
     </ItemGroup>
