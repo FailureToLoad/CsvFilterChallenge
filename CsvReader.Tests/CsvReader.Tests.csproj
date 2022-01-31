@@ -18,4 +18,13 @@
       <ProjectReference Include="..\CsvReader\CsvReader.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="valid.csv">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="empty.csv">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

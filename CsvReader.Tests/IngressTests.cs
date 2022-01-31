@@ -9,8 +9,7 @@ public class IngressTests
 {
     private const string MissingFilePath = "garbage";
     private const string ValidFilePath = "valid.csv";
-
-    
+    private const string EmptyFilePath = "empty.csv";
 
     [Test]
     public void When_UserInputsMissingFilePath_Then_RequestNewFile()
@@ -28,6 +27,14 @@ public class IngressTests
         IContext context = new RequestFilePathContext();
         context = context.Transition();
         Assert.True(context is FileProcessingContext);
+    }
+    
+    [Test]
+    public void When_UserProvidesEmptyFile_Then_ReportError()
+    {
+        IContext context = new FileProcessingContext(EmptyFilePath);
+        context = context.Transition();
+        Assert.True(context is ErrorReportingContext);
     }
     
 }
