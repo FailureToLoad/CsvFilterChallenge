@@ -11,6 +11,7 @@ public class IngressTests
     private const string ValidFilePath = "valid.csv";
     private const string EmptyFilePath = "empty.csv";
     private const string HeaderElementMistmatch = "header-element-mismatch.csv";
+    private const string NoValueRows = "no-value-rows.csv";
 
     [Test]
     public void When_UserInputsMissingFilePath_Then_RequestNewFile()
@@ -18,7 +19,7 @@ public class IngressTests
         Console.SetIn(new StringReader(MissingFilePath));
         IContext context = new RequestFilePathContext();
         context = context.Transition();
-        Assert.True(context is RequestFilePathContext);
+        Assert.IsInstanceOf(typeof(RequestFilePathContext), context);
     }
     
     [Test]
@@ -27,15 +28,16 @@ public class IngressTests
         Console.SetIn(new StringReader(ValidFilePath));
         IContext context = new RequestFilePathContext();
         context = context.Transition();
-        Assert.True(context is FileProcessingContext);
+        Assert.IsInstanceOf(typeof(FileProcessingContext), context);
     }
     
     [TestCase(EmptyFilePath)]
     [TestCase(HeaderElementMistmatch)]
+    [TestCase(NoValueRows)]
     public void When_ProcessingInvalidFile_Then_ReportError(string filePath)
     {
         IContext context = new FileProcessingContext(filePath);
         context = context.Transition();
-        Assert.True(context is ErrorReportingContext);
+        Assert.IsInstanceOf(typeof(ErrorReportingContext), context);
     }
 }

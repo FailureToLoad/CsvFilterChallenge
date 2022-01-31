@@ -22,6 +22,9 @@ public class FileProcessingContext : IContext
                 return new ErrorReportingContext(IngressMessages.DataMismatch());
             valueRows.Add(valueRow);
         }
+        
+        if (!valueRows.Any())
+            return new ErrorReportingContext(IngressMessages.NoValueRows());
         return new DocumentReadyContext();
     }
     
