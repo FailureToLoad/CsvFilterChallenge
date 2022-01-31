@@ -14,6 +14,14 @@ public class FileProcessingContext : IContext
             return new ErrorReportingContext(IngressMessages.HeadersMissing());
         
         var headerMap = BuildHeaderMap(reader.ReadLine()!.Split(","));
+        List<string[]> valueRows = new();
+        while (reader.Peek() >= 0)
+        {
+            var valueRow = reader.ReadLine()!.Split(",");
+            if (valueRow.Length != headerMap.Count )
+                return new ErrorReportingContext(IngressMessages.DataMismatch());
+            valueRows.Add(valueRow);
+        }
         return new DocumentReadyContext();
     }
     
