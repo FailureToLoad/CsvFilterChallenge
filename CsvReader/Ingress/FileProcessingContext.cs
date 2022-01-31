@@ -3,10 +3,7 @@ namespace CsvReader.Ingress;
 public class FileProcessingContext : IContext
 {
     private readonly string _filePath;
-    public FileProcessingContext(string filePath)
-    {
-        _filePath = filePath;
-    }
+    public FileProcessingContext(string filePath) => _filePath = filePath;
     public IContext Transition()
     {
         using StreamReader reader = new StreamReader(_filePath);
@@ -25,7 +22,7 @@ public class FileProcessingContext : IContext
         
         if (!valueRows.Any())
             return new ErrorReportingContext(IngressMessages.NoValueRows());
-        return new DocumentReadyContext();
+        return new DocumentReadyContext(new CsvDocument(headerMap,valueRows));
     }
     
     private Dictionary<string,int> BuildHeaderMap(string[] headers)
