@@ -18,7 +18,7 @@ public class QueryTests
     {
         Console.SetIn(new StringReader("1"));
         var document = MakeValidDocument();
-        IContext context = new HeaderSelectionContext(document);
+        IContext context = new ColumnSelectionContext(document);
         context = context.Transition();
         Assert.IsInstanceOf<QueryContext>(context);
     }
@@ -29,9 +29,9 @@ public class QueryTests
     {
         Console.SetIn(new StringReader(choice));
         var document = MakeValidDocument();
-        IContext context = new HeaderSelectionContext(document);
+        IContext context = new ColumnSelectionContext(document);
         context = context.Transition();
-        Assert.IsInstanceOf<HeaderSelectionContext>(context);
+        Assert.IsInstanceOf<ColumnSelectionContext>(context);
     }
 
     [Test]

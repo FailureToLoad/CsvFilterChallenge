@@ -4,7 +4,7 @@ public class QueryStrategy
 {
     public IEnumerable<string[]> QueryDocument(CsvDocument document)
     {
-        IContext context = new HeaderSelectionContext(document);
+        IContext context = new ColumnSelectionContext(document);
         while (context is not QueryResultsAvailableContext)
             context = context.Transition();
         QueryResultsAvailableContext endState = (context as QueryResultsAvailableContext)!;

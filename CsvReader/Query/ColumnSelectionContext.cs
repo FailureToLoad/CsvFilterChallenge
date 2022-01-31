@@ -1,13 +1,13 @@
 namespace CsvReader.Query;
 
-public class HeaderSelectionContext : IContext
+public class ColumnSelectionContext : IContext
 {
     private readonly CsvDocument _document;
-    public HeaderSelectionContext(CsvDocument document) => _document = document;
+    public ColumnSelectionContext(CsvDocument document) => _document = document;
 
     public IContext Transition()
     {
-        Console.WriteLine(QueryMessages.HeaderSelection);
+        Console.WriteLine(QueryMessages.ColumnSelection);
         var headers = _document.GetHeaders().OrderBy(kvp => kvp.Value);
         foreach (KeyValuePair<string, int> kvp in headers)
             Console.WriteLine($"{kvp.Value+1}.{kvp.Key}");
