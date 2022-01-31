@@ -20,9 +20,10 @@ public class QueryContext : IContext
         {
             Console.WriteLine(QueryMessages.InvalidDateOfBirth);
             return this;
-        } 
-            
-        throw new NotImplementedException();
+        }
+
+        var results = ExecuteQuery(_document, _header.Value, query);
+        return new QueryResultsAvailableContext(results);
     }
 
     private string GetQuery(string prompt)
@@ -40,5 +41,10 @@ public class QueryContext : IContext
             DateTimeStyles.None, 
             out dob);
         return dob > DateTime.MinValue;
+    }
+
+    private IEnumerable<string[]> ExecuteQuery(CsvDocument document, int index, string query)
+    {
+        return document.GetRows().Where(rec => rec[index].Equals(query));
     }
 }

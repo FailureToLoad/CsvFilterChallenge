@@ -10,6 +10,7 @@ namespace CsvReader.Tests;
 public class QueryTests
 {
     private const string InvalidDobQuery = "1/11/2021";
+    private const string ValidDobQuery = "19700101";
     [Test]
     public void When_UserSubmitsValidChoice_Then_AdvanceToQueryRequestState()
     {
@@ -35,6 +36,17 @@ public class QueryTests
     public void When_InvalidDobQueryReceived_Then_RepromptForQuery()
     {
         Console.SetIn(new StringReader(InvalidDobQuery));
+        KeyValuePair<string, int> header = GetDobHeader(); 
+        var document = MakeValidDocument();
+        IContext context = new QueryContext(header, document);
+        context = context.Transition();
+        Assert.IsInstanceOf<QueryContext>(context);
+    }
+    
+    [Test]
+    public void When_ValidDobQueryReceived_Then_AdvanceToQueryResultsAvailableContext()
+    {
+        Console.SetIn(new StringReader(ValidDobQuery));
         KeyValuePair<string, int> header = GetDobHeader(); 
         var document = MakeValidDocument();
         IContext context = new QueryContext(header, document);
