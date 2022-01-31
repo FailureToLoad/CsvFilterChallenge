@@ -12,8 +12,8 @@ public class HeaderSelectionContext : IContext
         foreach (KeyValuePair<string, int> kvp in headers)
             Console.WriteLine($"{kvp.Value}.{kvp.Key+1}");
         string? choice = Console.ReadLine()!;
-        if (int.TryParse(choice, out int friend) && IsChoiceInRange(friend--,_document.GetHeaders().Values))
-            return new QueryRequestContext(friend);
+        if (int.TryParse(choice, out int parsedChoice) && IsChoiceInRange(parsedChoice--,_document.GetHeaders().Values))
+            return new QueryContext(headers.First(kvp => kvp.Value == parsedChoice), _document);
         return this;
     }
 

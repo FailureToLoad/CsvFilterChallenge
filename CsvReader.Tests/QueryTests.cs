@@ -9,6 +9,7 @@ namespace CsvReader.Tests;
 
 public class QueryTests
 {
+    private const string InvalidDobQuery = "1/11/2021";
     [Test]
     public void When_UserSubmitsValidChoice_Then_AdvanceToQueryRequestState()
     {
@@ -16,7 +17,7 @@ public class QueryTests
         var document = MakeValidDocument();
         IContext context = new HeaderSelectionContext(document);
         context = context.Transition();
-        Assert.IsInstanceOf<QueryRequestContext>(context);
+        Assert.IsInstanceOf<QueryContext>(context);
     }
 
     [TestCase("skub")]
@@ -28,6 +29,17 @@ public class QueryTests
         IContext context = new HeaderSelectionContext(document);
         context = context.Transition();
         Assert.IsInstanceOf<HeaderSelectionContext>(context);
+    }
+
+    [Test]
+    public void When_InvalidDobQueryReceived_Then_RepromptForQuery()
+    {
+        Console.SetIn(new StringReader(InvalidDobQuery));
+        KeyValuePair<string, int> header = GetDobHeader(); 
+        var document = MakeValidDocument();
+        IContext context = new QueryContext(header, document);
+        context = context.Transition();
+        Assert.IsInstanceOf<QueryContext>(context);
     }
 
     private CsvDocument MakeValidDocument()
@@ -47,5 +59,10 @@ public class QueryTests
             new[] {"Robert","Griesemer","19640609"}
         };
         return new CsvDocument(headers, rows);
+    }
+
+    private KeyValuePair<string, int> GetDobHeader()
+    {
+        return new KeyValuePair<string, int>("dob", 2);
     }
 }

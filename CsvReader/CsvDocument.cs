@@ -13,4 +13,5 @@ public class CsvDocument
 
     public IEnumerable<string[]> GetRows() => ValueRows;
     public Dictionary<string,int> GetHeaders() => HeaderMap;
+    
 }
