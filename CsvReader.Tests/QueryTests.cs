@@ -77,6 +77,20 @@ public class QueryTests
         context = context.Transition();
         Assert.IsInstanceOf<QueryResultsAvailableContext>(context);
     }
+    
+    [Test]
+    public void When_QueryStrategyTakesValidInput_Then_QueryReturnsResults()
+    {
+        var data = String.Join(Environment.NewLine, new[]
+        {
+            "1",
+            "Bobby",
+        });
+        Console.SetIn(new StringReader(data));
+        QueryStrategy strategy = new();
+        var results = strategy.QueryDocument(MakeValidDocument());
+        Assert.IsNotEmpty(results);
+    }
 
     private CsvDocument MakeValidDocument()
     {
