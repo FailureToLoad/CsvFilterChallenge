@@ -11,8 +11,6 @@ public class CsvDocument
         ValueRows = valueRows;
     }
 
-    public IEnumerable<string[]> GetRows()
-    {
-        return ValueRows;
-    }
+    public IEnumerable<string[]> GetRows() => ValueRows;
+    public Dictionary<string,int> GetHeaders() => HeaderMap;
 }
