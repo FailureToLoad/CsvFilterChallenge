@@ -10,4 +10,9 @@ public class CsvDocument
         HeaderMap = headerMap;
         ValueRows = valueRows;
     }
+
+    public IEnumerable<string[]> GetRows()
+    {
+        return ValueRows;
+    }
 }

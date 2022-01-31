@@ -56,4 +56,13 @@ public class IngressTests
         context = context.Transition();
         Assert.IsInstanceOf(typeof(DocumentReadyContext), context);
     }
+
+    [Test]
+    public void When_IngressStrategyScansFile_Then_ProducedDocumentHasRows()
+    {
+        Console.SetIn(new StringReader(ValidFilePath));
+        IngressStrategy strategy = new IngressStrategy();
+        var document = strategy.ReadCsvFromFile();
+        Assert.IsNotEmpty(document.GetRows());
+    }
 }
