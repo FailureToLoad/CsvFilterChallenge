@@ -9,5 +9,6 @@ var document = ingressStrat.ReadCsvFromFile();
 QueryStrategy queryStrat = new();
 var results = queryStrat.QueryDocument(document);
 
+Console.WriteLine("Results:");
 foreach(var result in results)
     Console.WriteLine(string.Join(" ",result));
