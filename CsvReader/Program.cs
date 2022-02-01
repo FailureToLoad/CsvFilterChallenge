@@ -12,5 +12,5 @@ var results = queryStrat.QueryDocument(document);
 Console.WriteLine("Results:");
 foreach(var result in results)
     Console.WriteLine(string.Join(" ",result));
-
+Console.WriteLine("Press any key to exit");
 Console.ReadKey();
