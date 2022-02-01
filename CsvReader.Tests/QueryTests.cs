@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using CsvReader.Query;
 using NUnit.Framework;
 
@@ -14,7 +15,7 @@ public class QueryTests
     private const string FirstNameQuery = "Bobby";
     private const string LastNameQuery = "Tables";
     [Test]
-    public void When_UserSubmitsValidChoice_Then_AdvanceToQueryRequestState()
+    public void When_UserSubmitsValidChoice_Then_AdvanceToQueryRequest()
     {
         Console.SetIn(new StringReader("1"));
         var document = MakeValidDocument();
@@ -91,6 +92,21 @@ public class QueryTests
         var results = strategy.QueryDocument(MakeValidDocument());
         Assert.IsNotEmpty(results);
     }
+    
+    [Test]
+    public void When_QueryStrategyTakesValidInput_Then_ReturnedResultsAreValid()
+    {
+        var data = String.Join(Environment.NewLine, new[]
+        {
+            "1",
+            "Bobby",
+        });
+        Console.SetIn(new StringReader(data));
+        QueryStrategy strategy = new();
+        var result = strategy.QueryDocument(MakeValidDocument()).First();
+        var expected = RequestMrTables();
+        Assert.AreEqual(expected,result);
+    }
 
     private CsvDocument MakeValidDocument()
     {
@@ -124,5 +140,10 @@ public class QueryTests
     private KeyValuePair<string, int> GetLastNameHeader()
     {
         return new KeyValuePair<string, int>("last_name", 1);
+    }
+
+    private string[] RequestMrTables()
+    {
+        return new[] {"Bobby", "Tables", "19700101"};
     }
 }
