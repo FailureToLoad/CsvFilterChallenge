@@ -7,6 +7,7 @@
         <Nullable>enable</Nullable>
         <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
         <RuntimeIdentifiers>win10-x64;linux-x64;osx-x64;osx.12-arm64</RuntimeIdentifiers>
+        <PublishSingleFile>true</PublishSingleFile>
     </PropertyGroup>
 
 </Project>
