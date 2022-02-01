@@ -21,12 +21,12 @@ Robert,Griesemer,19640609
 This program will parse a csv file. Prior to running it, a csv filepath should be copied and ready to be pasted.  
 If you do not have a csv file for testing, the [valid.csv](CsvReader.Tests/valid.csv) in the test project can be used.  
 Simply find the path to it in your local system and provide it to the program when prompted.  
-
-1. Clone the repository to your local machine
-2. Navigate to the root directory of the repository via your favorite terminal application.
-3. Build the solution via `dotnet build`.
-4. Run the solution via `dotnet run`.
-5. Follow the prompts.
+1. Install the appropriate version of the [.Net 6.01 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/6.0).
+2. Clone the repository to your local machine
+3. Navigate to the root directory of the repository via your favorite terminal application.
+4. Build the solution via `dotnet build`.
+5. Run the solution via `dotnet run`.
+6. Follow the prompts.
 
 ## Assumptions
 
