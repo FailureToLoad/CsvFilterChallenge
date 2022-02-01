@@ -19,14 +19,23 @@ Robert,Griesemer,19640609
 ## How-To
 
 This program will parse a csv file. Prior to running it, a csv filepath should be copied and ready to be pasted.  
-If you do not have a csv file for testing, the [valid.csv](CsvReader.Tests/valid.csv) in the test project can be used.  
-Simply find the path to it in your local system and provide it to the program when prompted.  
-1. Install the appropriate version of the [.Net 6.0.1 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/6.0).
-2. Clone the repository to your local machine
-3. Navigate to the root directory of the repository via your favorite terminal application.
-4. Build the solution via `dotnet build`.
-5. Run the solution via `dotnet run`.
-6. Follow the prompts.
+If you do not have a csv file for testing, a sample input file is provided on the releases page.  
+
+### Windows
+
+1. Download the version of the application for your operating system from the releases page.
+2. Unzip the files to the location of your choice.
+3. Double click the CsvReader.exe file to launch the program.
+4. Follow the prompts.
+
+### OSX/Linux
+
+1. Download the version of the application for your operating system from the releases page.
+2. Unzip the files to the location of your choice.
+3. In OSX/Linux, open a terminal window and navigate to where the files were extracted.
+5. Ensure the file is executable by running `chmod +x ./CsvReader`
+6. Run the program with `./CsvReader`
+7. Follow the prompts.
 
 ## Assumptions
 
