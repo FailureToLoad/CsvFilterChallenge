@@ -32,9 +32,9 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: publish linux-x64
-      run: dotnet publish ./CsvReader/CsvReader.csproj -r linux-x64 --self-contained true -o CsvReader-linux-x64
+      run: dotnet publish ./dotnet/CsvReader/CsvReader.csproj -r linux-x64 --self-contained true -o CsvReader-linux-x64
     - name: Zip artifact for deployment
-      run: 7za a -t7z CsvReader-linux-x64.zip ./CsvReader-linux-x64/*
+      run: 7za a -t7z CsvReader-linux-x64.zip ./dotnet/CsvReader-linux-x64/*
     - name: upload linux artifact
       uses: actions/upload-release-asset@v1
       env:
@@ -55,9 +55,9 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: publish win10-x64
-      run: dotnet publish ./CsvReader/CsvReader.csproj -r win10-x64 --self-contained true -o CsvReader-win10-x64
+      run: dotnet publish ./dotnet/CsvReader/CsvReader.csproj -r win10-x64 --self-contained true -o CsvReader-win10-x64
     - name: Zip artifact for deployment
-      run: 7za a -t7z CsvReader-win10-x64.zip ./CsvReader-win10-x64/*
+      run: 7za a -t7z CsvReader-win10-x64.zip ./dotnet/CsvReader-win10-x64/*
     - name: upload linux artifact
       uses: actions/upload-release-asset@v1
       env:
@@ -78,9 +78,9 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: publish osx-x64
-      run: dotnet publish ./CsvReader/CsvReader.csproj -r osx-x64 --self-contained true -o CsvReader-osx-x64
+      run: dotnet publish ./dotnet/CsvReader/CsvReader.csproj -r osx-x64 --self-contained true -o CsvReader-osx-x64
     - name: Zip artifact for deployment
-      run: 7za a -t7z CsvReader-osx-x64.zip ./CsvReader-osx-x64/*
+      run: 7za a -t7z CsvReader-osx-x64.zip ./dotnet/CsvReader-osx-x64/*
     - name: upload linux artifact
       uses: actions/upload-release-asset@v1
       env:
@@ -101,9 +101,9 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: publish osx.12-arm64
-      run: dotnet publish ./CsvReader/CsvReader.csproj -r osx.12-arm64 --self-contained true -o CsvReader-osx.12-arm64
+      run: dotnet publish ./dotnet/CsvReader/CsvReader.csproj -r osx.12-arm64 --self-contained true -o CsvReader-osx.12-arm64
     - name: Zip artifact for deployment
-      run: 7za a -t7z CsvReader-osx.12-arm64.zip ./CsvReader-osx.12-arm64/*
+      run: 7za a -t7z CsvReader-osx.12-arm64.zip ./dotnet/CsvReader-osx.12-arm64/*
     - name: upload linux artifact
       uses: actions/upload-release-asset@v1
       env:
