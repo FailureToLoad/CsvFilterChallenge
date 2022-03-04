@@ -41,7 +41,7 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
       with:
         upload_url: ${{ needs.create-release.outputs.upload_url}}
-        asset_path: ./CsvReader-linux-x64.zip
+        asset_path: ./dotnet/CsvReader-linux-x64.zip
         asset_name: CsvReader-linux-x64.zip
         asset_content_type: application/gzip
 
@@ -64,7 +64,7 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
       with:
         upload_url: ${{ needs.create-release.outputs.upload_url}}
-        asset_path: ./CsvReader-win10-x64.zip
+        asset_path: ./dotnet/CsvReader-win10-x64.zip
         asset_name: CsvReader-win10-x64.zip
         asset_content_type: application/gzip
 
@@ -87,7 +87,7 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
       with:
         upload_url: ${{ needs.create-release.outputs.upload_url}}
-        asset_path: ./CsvReader-osx-x64.zip
+        asset_path: ./dotnet/CsvReader-osx-x64.zip
         asset_name: CsvReader-osx-x64.zip
         asset_content_type: application/gzip
 
@@ -110,7 +110,7 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
       with:
         upload_url: ${{ needs.create-release.outputs.upload_url}}
-        asset_path: ./CsvReader-osx.12-arm64.zip
+        asset_path: ./dotnet/CsvReader-osx.12-arm64.zip
         asset_name: CsvReader-osx.12-arm64.zip
         asset_content_type: application/gzip
   
